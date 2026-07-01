@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+<div class="row text-center">
+    <h1>{{ title }}</h1>
+    <div class="col-md-12">
+        <div class="my_form">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXs1djepGtXcA7qCKyqylnB4mHhTqo6NwlKhe2TqDYV3j1ZKdQYcSiyyk&s=10" 
+            alt="">
+            <form action="" method="post" novalidate>
+                {{ form.hidden_tag() }}
+                <p>
+                    {{ form.username.label }} <br>
+                    {{ form.username(size=32) }} <br>
+                    {% for error in form.username.errors %}
+                    <span style="color: red;">
+                        {{ error }}
+                    </span>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.password.label }} <br>
+                    {{ form.password(size=32) }} <br>
+                    {% for error in form.password.errors %}
+                    <span style="color: red;">
+                        {{ error }}
+                    </span>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.remember_me() }} {{ form.remember_me.label }}
+                </p>
+                <p>
+                    {{ form.submit(class='btn bg-primary-w-100') }}
+                </p>
+            </form>
+            <p>
+                New here? <a href="{{  url_for('register')  }}">Register</a>
+            </p>
+
+            <!-- Password reset -->
+            <div class="text-sm">
+                <p>
+                    Forgot passowrd?
+                    <a href="{{ url_for('request_password_reset') }}">Reset here</a>
+                </p>
+            </div>
+            <!-- End password reset -->
+
+        </div>
+    </div>
+</div>
+{% endblock %}
